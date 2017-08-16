@@ -230,17 +230,13 @@ def dot_preamble(c_fname, for_latex, graph_label, main_node):
 
 def choose_node_format(node, nest_level, src_line, defined_somewhere,
                        for_latex, multi_page, no_src_lines):
-    colors = ['#eecc80', '#ccee80', '#80ccee', '#eecc80', '#80eecc']
+    colors = ['#eecc80', '#ccee80', '#80ccee', '#80eecc']
     shapes = ['box', 'ellipse', 'octagon', 'hexagon', 'diamond']
     sl = '\\\\'  # after fprintf \\ and after dot \, a single slash !
 
-    # color, shape ?
-    if nest_level == 0:
-        color = colors[0]
-        shape = 'box'
-    else:
-        color = colors[(nest_level - 1) % 5]
-        shape = shapes[nest_level % 5]
+    # color, shape
+    shape = 'box'
+    color = colors[nest_level % len(colors)]
 
     # fix underscores ?
     if for_latex:
